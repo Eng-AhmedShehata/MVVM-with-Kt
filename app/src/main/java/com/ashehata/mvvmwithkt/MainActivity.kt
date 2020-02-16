@@ -3,6 +3,8 @@ package com.ashehata.mvvmwithkt
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,9 +21,14 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         insertData.setOnClickListener{v ->
-            userName.text.toString()
-            userPassword.text.toString()
+            mainViewModel.username = userName.text.toString()
+            mainViewModel.userPassword = userPassword.text.toString()
         }
+
+
+        mainViewModel.isValid.observe(this, Observer { bool ->
+            Toast.makeText(this, bool.toString(), Toast.LENGTH_LONG).show()
+        })
 
     }
 }
