@@ -1,4 +1,6 @@
 package com.ashehata.mvvmwithkt
 
-class MainViewModel {
+import androidx.lifecycle.ViewModel
+
+class MainViewModel : ViewModel() {
 }
